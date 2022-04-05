@@ -1,30 +1,28 @@
 <template>
-  <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </nav>
-  <router-view/>
+  <navView />
+
+  <router-view class="container" />
 </template>
+<script>
+import navView from "@/components/navView.vue";
+import { useRoute } from "vue-router";
+import { onMounted, watch } from "@vue/runtime-core";
+import { useStore } from "vuex";
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
+export default {
+  name: "appView",
 
-nav {
-  padding: 30px;
-}
-
-nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-nav a.router-link-exact-active {
-  color: #42b983;
-}
-</style>
+  components: {
+    navView,
+  },
+  setup() {
+    const store = useStore();
+    onMounted(() => {
+      store.commit("onStart");
+    });
+    watch(useRoute(), () => {
+      store.commit("onStart");
+    });
+  },
+};
+</script>
