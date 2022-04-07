@@ -2,7 +2,7 @@
   <div class="login">
     <div class="row">
       <div class="col-lg-4 mx-auto shadow rounded p-4 mt-3">
-        <h1 class="mt-3 text-center">ورود</h1>
+        <h1 class="mt-3 text-center">عضویت</h1>
         <form @submit.prevent="doLogin">
           <div class="mb-3">
             <label for="usernameInput" class="form-label">نام کاربری</label>
@@ -20,6 +20,7 @@
               {{ usernameEM }}
             </div>
           </div>
+
           <div class="mb-3">
             <label for="passwordInput" class="form-label">رمز عبور</label>
             <input
@@ -34,6 +35,25 @@
             />
             <div class="invalid-feedback" v-if="passwordE">
               {{ passwordEM }}
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label for="passwordInput2" class="form-label"
+              >تکرار رمز عبور</label
+            >
+            <input
+              type="password"
+              class="form-control"
+              id="passwordInput2"
+              v-model="password2"
+              :class="{
+                'is-invalid': password2E === true,
+                'is-valid': password2E === false,
+              }"
+            />
+            <div class="invalid-feedback" v-if="password2E">
+              {{ password2EM }}
             </div>
           </div>
 
@@ -53,10 +73,13 @@ export default {
   setup() {
     const username = ref("");
     const password = ref("");
+    const password2 = ref("");
     const usernameE = ref();
-    const usernameEM = ref("");
     const passwordE = ref();
+    const password2E = ref();
+    const usernameEM = ref("");
     const passwordEM = ref("");
+    const password2EM = ref("");
     const store = useStore();
     const router = useRouter();
 
@@ -87,6 +110,31 @@ export default {
         passwordE.value = false;
         passwordEM.value = "";
       }
+
+      if (password2.value.length < 6) {
+        access.value = false;
+        password2E.value = true;
+        if (password2.value.length == 0) {
+          password2EM.value = " لطفا تکرار رمز عبور را وارد کنید.";
+        } else {
+          password2EM.value =
+            " تکرار رمز عبور باید حداقل شش کاراکتر داشته باشد.";
+        }
+      } else {
+        password2E.value = false;
+        password2EM.value = "";
+      }
+
+      if (password.value != password2.value) {
+        access.value = false;
+        password2E.value = true;
+        passwordE.value = true;
+        passwordEM.value = "رمز عبور یکسان نیست";
+      } else if (!password2E.value && !passwordE.value) {
+        password2E.value = false;
+        password2EM.value = "";
+      }
+
       if (access.value) {
         store.commit("login", `${username.value}:${password.value}`);
         router.push("/profile");
@@ -101,6 +149,9 @@ export default {
       usernameEM,
       passwordE,
       passwordEM,
+      password2,
+      password2E,
+      password2EM,
     };
   },
 };

@@ -4,6 +4,7 @@ import AboutView from "../views/AboutView.vue";
 import profileView from "../views/profileView.vue";
 import loginView from "../views/loginView.vue";
 import logoutView from "../views/logoutView.vue";
+import registerView from "../views/registerView.vue";
 import store from "@/store";
 
 const routes = [
@@ -34,6 +35,12 @@ const routes = [
     name: "logout",
     component: logoutView,
     meta: { loginRequired: true },
+  },
+  {
+    path: "/register",
+    name: "register",
+    component: registerView,
+    // meta: { loginRequired: true },
   },
 ];
 

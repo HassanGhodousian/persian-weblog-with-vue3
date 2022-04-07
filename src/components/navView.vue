@@ -45,6 +45,14 @@
           <li class="nav-item">
             <router-link
               class="nav-link"
+              v-if="!store.state.isAuthenticated"
+              to="/register"
+              >عضویت</router-link
+            >
+          </li>
+          <li class="nav-item">
+            <router-link
+              class="nav-link"
               v-if="store.state.isAuthenticated"
               to="/logout"
               >خروج</router-link
