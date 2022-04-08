@@ -13,7 +13,7 @@ export default {
     const store = useStore();
     const router = useRouter();
     function doLogout() {
-      store.commit("logout");
+      store.commit("log/logout");
       router.push("/login");
     }
     return {

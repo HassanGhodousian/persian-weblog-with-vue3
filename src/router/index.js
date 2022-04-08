@@ -1,10 +1,12 @@
 import { createRouter, createWebHistory } from "vue-router";
 import HomeView from "../views/HomeView.vue";
 import AboutView from "../views/AboutView.vue";
-import profileView from "../views/profileView.vue";
-import loginView from "../views/loginView.vue";
-import logoutView from "../views/logoutView.vue";
-import registerView from "../views/registerView.vue";
+import ProfileView from "../views/profileView.vue";
+import LoginView from "../views/loginView.vue";
+import LogoutView from "../views/logoutView.vue";
+import RegisterView from "../views/registerView.vue";
+import ArticleView from "../views/article/ArticleView.vue";
+import DetileView from "../views/article/DetileView.vue";
 import store from "@/store";
 
 const routes = [
@@ -14,6 +16,18 @@ const routes = [
     component: HomeView,
   },
   {
+    path: "/article",
+    name: "article",
+    component: ArticleView,
+    children: [
+      {
+        path: ":slug",
+        name: "detile",
+        component: DetileView,
+      },
+    ],
+  },
+  {
     path: "/about",
     name: "about",
     component: AboutView,
@@ -21,25 +35,25 @@ const routes = [
   {
     path: "/profile",
     name: "profile",
-    component: profileView,
+    component: ProfileView,
     meta: { loginRequired: true },
   },
   {
     path: "/login",
     name: "login",
-    component: loginView,
+    component: LoginView,
     meta: { loginRedirect: true },
   },
   {
     path: "/logout",
     name: "logout",
-    component: logoutView,
+    component: LogoutView,
     meta: { loginRequired: true },
   },
   {
     path: "/register",
     name: "register",
-    component: registerView,
+    component: RegisterView,
     // meta: { loginRequired: true },
   },
 ];
