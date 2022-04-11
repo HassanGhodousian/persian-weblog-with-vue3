@@ -3,12 +3,12 @@
     <h1 class="text-center mb-5">صفحه اصلی</h1>
     <article v-for="article in articlse" :key="article.index">
       <h3>
-        <!-- <router-link :to="`/article/${article.slug}`"
+        <router-link :to="`/article/${article.slug}`"
           >{{ article.title }}
-        </router-link> -->
-        <a href="">
+        </router-link>
+        <!-- <a href="">
           {{ article.title }}
-        </a>
+        </a> -->
       </h3>
       <div>{{ article.discription }}</div>
       <!-- <router-link :to="`/article/${article.slug}`"> بیشتر +</router-link> -->
@@ -26,7 +26,7 @@ export default {
 
   components: {},
   setup() {
-    let articlse = localStorage.getItem("articlse");
+    let articlse = localStorage.getItem("article");
     articlse = JSON.parse(articlse);
     console.log(articlse);
     return { articlse };

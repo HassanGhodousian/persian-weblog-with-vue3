@@ -18,10 +18,10 @@ export default {
   setup() {
     const store = useStore();
     onMounted(() => {
-      store.commit("onStart");
+      store.commit("log/onStart");
     });
     watch(useRoute(), () => {
-      store.commit("onStart");
+      store.commit("log/onStart");
     });
   },
 };

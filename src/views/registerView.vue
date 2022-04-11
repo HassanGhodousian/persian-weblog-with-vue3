@@ -136,7 +136,7 @@ export default {
       }
 
       if (access.value) {
-        store.commit("login", `${username.value}:${password.value}`);
+        store.commit("log/login", `${username.value}:${password.value}`);
         router.push("/profile");
       }
     }
