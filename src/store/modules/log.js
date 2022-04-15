@@ -1,6 +1,5 @@
 const log = {
   namespaced: true,
-
   state: {
     isAuthenticated: false,
     token: "",
@@ -22,7 +21,6 @@ const log = {
         state.isAuthenticated = true;
         state.token = token;
         localStorage.setItem("token", token);
-        console.log(state.isAuthenticated);
       } else {
         state.isAuthenticated = false;
         state.token = "";

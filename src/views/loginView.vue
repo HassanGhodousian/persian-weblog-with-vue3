@@ -59,7 +59,6 @@ export default {
     const passwordEM = ref("");
     const store = useStore();
     const router = useRouter();
-
     function doLogin() {
       const access = ref(true);
       if (username.value.length < 3) {

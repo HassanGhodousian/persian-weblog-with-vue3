@@ -6,21 +6,16 @@
         <router-link :to="`/article/${article.slug}`"
           >{{ article.title }}
         </router-link>
-        <!-- <a href="">
-          {{ article.title }}
-        </a> -->
       </h3>
       <div>{{ article.discription }}</div>
-      <!-- <router-link :to="`/article/${article.slug}`"> بیشتر +</router-link> -->
-      <a href="">بیشتر +</a>
+      <router-link :to="`/article/${article.slug}`"> بیشتر +</router-link>
+
       <hr />
     </article>
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-
 export default {
   name: "HomeView",
 
@@ -28,7 +23,6 @@ export default {
   setup() {
     let articlse = localStorage.getItem("article");
     articlse = JSON.parse(articlse);
-    console.log(articlse);
     return { articlse };
   },
 };

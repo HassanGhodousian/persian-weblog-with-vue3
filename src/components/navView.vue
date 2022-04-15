@@ -29,7 +29,7 @@
           <li class="nav-item">
             <router-link
               class="nav-link"
-              v-if="store.state.isAuthenticated"
+              v-if="store.state.log.isAuthenticated"
               to="/profile"
               >پروفایل</router-link
             >
@@ -37,7 +37,7 @@
           <li class="nav-item">
             <router-link
               class="nav-link"
-              v-if="!store.state.isAuthenticated"
+              v-if="!store.state.log.isAuthenticated"
               to="/login"
               >ورود</router-link
             >
@@ -45,7 +45,7 @@
           <li class="nav-item">
             <router-link
               class="nav-link"
-              v-if="!store.state.isAuthenticated"
+              v-if="!store.state.log.isAuthenticated"
               to="/register"
               >عضویت</router-link
             >
@@ -53,7 +53,7 @@
           <li class="nav-item">
             <router-link
               class="nav-link"
-              v-if="store.state.isAuthenticated"
+              v-if="store.state.log.isAuthenticated"
               to="/logout"
               >خروج</router-link
             >
@@ -81,6 +81,7 @@ export default {
   setup() {
     const store = useStore();
 
+    console.log("status", store.state.log.isAuthenticated);
     return { store };
   },
 };

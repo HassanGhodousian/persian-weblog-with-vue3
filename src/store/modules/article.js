@@ -7,13 +7,13 @@ const article = {
   },
   getters: {
     findSlug() {
-      console.log("article");
       const route = useRoute();
       let articlse = localStorage.getItem("article");
       articlse = JSON.parse(articlse);
       const article = articlse.find(
         (article) => article.slug == route.params.slug
       );
+
       return { article };
     },
   },

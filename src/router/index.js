@@ -7,6 +7,7 @@ import LogoutView from "../views/logoutView.vue";
 import RegisterView from "../views/registerView.vue";
 import ArticleView from "../views/article/ArticleView.vue";
 import DetileView from "../views/article/DetileView.vue";
+import addView from "../views/article/addView.vue";
 import store from "@/store/modules/log";
 
 const routes = [
@@ -25,6 +26,12 @@ const routes = [
         name: "detile",
         component: DetileView,
       },
+      {
+        path: "add",
+        name: "add",
+        component: addView,
+        meta: { loginRequired: true },
+      },
     ],
   },
   {
@@ -42,14 +49,15 @@ const routes = [
     path: "/login",
     name: "login",
     component: LoginView,
-    // meta: { loginRedirect: true },
+    meta: { loginRedirect: true },
   },
   {
     path: "/logout",
     name: "logout",
     component: LogoutView,
-    // meta: { loginRequired: true },
+    meta: { loginRequired: true },
   },
+
   {
     path: "/register",
     name: "register",

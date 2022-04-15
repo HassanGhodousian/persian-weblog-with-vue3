@@ -1,6 +1,10 @@
 <template>
-  <h3>Detale</h3>
-  {{ findd.title }}
+  <div>
+    <h3>{{ findd.article.title }}</h3>
+    <p>
+      {{ findd.article.discription }}
+    </p>
+  </div>
 </template>
 
 <script>
@@ -9,7 +13,7 @@ export default {
   setup() {
     const store = useStore();
     const findd = store.getters["article/findSlug"];
-    console.log(findd);
+    console.log("findd", findd.article.title);
     return { findd };
   },
 };
