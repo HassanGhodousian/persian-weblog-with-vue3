@@ -21,7 +21,7 @@ export default {
 
   components: {},
   setup() {
-    let articlse = localStorage.getItem("article");
+    let articlse = localStorage.getItem("articlse");
     articlse = JSON.parse(articlse);
     return { articlse };
   },

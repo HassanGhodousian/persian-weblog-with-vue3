@@ -13,7 +13,7 @@ export default {
   setup() {
     const store = useStore();
     const findd = store.getters["article/findSlug"];
-    console.log("findd", findd.article.title);
+    // console.log("findd", findd.article.title);
     return { findd };
   },
 };

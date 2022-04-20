@@ -1,13 +1,13 @@
 <template>
   <div class="add container">
-    <form @submit.passive="doAdd">
+    <form @submit.prevent="doAdd">
       <div class="mb-3">
         <label for="title-text" class="form-label">موضوع:</label>
         <input
-          type="email"
+          type="text"
           class="form-control"
           id="title-text"
-          v-model="article.title"
+          v-model="title"
         />
       </div>
       <div class="mb-3">
@@ -16,7 +16,7 @@
           class="form-control"
           id="description-text"
           rows="3"
-          v-model="article.description"
+          v-model="description"
         ></textarea>
       </div>
       <div class="mb-3">
@@ -25,28 +25,45 @@
           class="form-control"
           id="content-text"
           rows="9"
-          v-model="article.content"
+          v-model="content"
         ></textarea>
       </div>
-      <button class="btn btn-success" type="submit ">ثبت</button>
+      <button class="btn btn-success" type="submit">ثبت</button>
     </form>
   </div>
 </template>
 
 <script>
-// import { reactive } from "@vue/reactivity";
 export default {
   name: "addView",
-
   components: {},
-  setup() {
-    let articlse = localStorage.getItem("article");
-    articlse = JSON.parse(articlse);
-
-    function doAdd() {
-      console.log("article");
-    }
-    return { articlse, doAdd };
+  data() {
+    let articles = [];
+    articles = localStorage.getItem("articlse");
+    articles = JSON.parse(articles);
+    return {
+      articles: articles,
+      title: "",
+      description: "",
+      content: "",
+      slug: "",
+    };
+  },
+  methods: {
+    doAdd() {
+      let article = {
+        title: this.title,
+        description: this.description,
+        content: this.content,
+        slug: this.title.replaceAll(" ", "-").toLowerCase(),
+      };
+      console.log(typeof this.articles);
+      this.articles.push(article);
+      console.log(this.articles);
+      let databace = JSON.stringify(this.articles);
+      localStorage.setItem("articlse", databace);
+      // this.$router.push(`article/${article.slug}`);
+    },
   },
 };
 </script>
